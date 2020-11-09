@@ -17,7 +17,6 @@ const useContacts = () => {
           throw new Error(error);
         }
         setData(results);
-        setIsLoading(false);
         setIsError(false);
       } catch (e) {
         setIsError(true);

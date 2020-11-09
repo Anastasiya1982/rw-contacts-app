@@ -2,10 +2,9 @@ import React from "react";
 import useContacts from "./useContacts";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import { ContactsTable } from "../../components/ContactsTable";
+import ContactsTable from "../../components/ContactsTable/index";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,7 +30,7 @@ export const Contacts = () => {
             Contacts
           </Typography>
         </Grid>
-        <Grid items xs={12}>
+        <Grid item xs={12}>
           {(() => {
             if (contacts.isLoading) {
               return <div>LOADING</div>;
