@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import ContactsTable from "../../components/ContactsTable/index";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -26,14 +27,14 @@ export const Contacts = () => {
     <Container className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12} className={classes.headContainer}>
-          <Typography variant="h4" component="h1">
+          <Typography variant="h3" component="h1">
             Contacts
           </Typography>
         </Grid>
         <Grid item xs={12}>
           {(() => {
             if (contacts.isLoading) {
-              return <div>LOADING</div>;
+              return <CircularProgress />;
             }
             if (contacts.isError) {
               return <div>...ERROR</div>;

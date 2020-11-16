@@ -11,6 +11,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import CopyToClickboardText from "../CopyToClickboardText";
+import { NATIONALITY_HUMAN_NAME } from "../../constants/nationality";
 
 const useStyles = makeStyles({
   table: {},
@@ -24,12 +26,12 @@ const ContactsTable = ({ data }) => {
           <TableHead>
             <TableRow>
               <TableCell>Avatar</TableCell>
-              <TableCell align="right">Full name</TableCell>
-              <TableCell align="right">Birthday</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Phone</TableCell>
-              <TableCell align="right">Location</TableCell>
-              <TableCell align="right">Nationality</TableCell>
+              <TableCell>Full name</TableCell>
+              <TableCell>Birthday</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Phone</TableCell>
+              <TableCell>Location</TableCell>
+              <TableCell>Nationality</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,15 +49,24 @@ const ContactsTable = ({ data }) => {
                   </Typography>
                   <Typography>{contact.dob.age} years</Typography>
                 </TableCell>
-                <TableCell align="right">{contact.email}</TableCell>
-                <TableCell align="right">{contact.phone}</TableCell>
-                <TableCell align="right">
-                  /{contact.location.country}/{contact.location.street.number}
-                  {contact.location.street.name},{contact.location.city}
-                  {contact.location.state}
-                  {contact.location.postcode}
+                <TableCell>
+                  <CopyToClickboardText
+                    text={contact.email}
+                  ></CopyToClickboardText>
                 </TableCell>
-                <TableCell align="right">{contact.nat}</TableCell>
+                <TableCell>
+                  <CopyToClickboardText text={contact.phone} />
+                </TableCell>
+                <TableCell>
+                  <Typography> {contact.location.country}/</Typography>
+                  <Typography>
+                    {contact.location.city}, {contact.location.street.name}{" "}
+                    {contact.location.street.number}
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  {NATIONALITY_HUMAN_NAME[contact.nat]}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
